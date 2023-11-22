@@ -201,7 +201,11 @@ class OpenSignCanvas:
 
         lines = text.split("\n")
         for index, line in enumerate(lines):
-            (text_width, text_height) = font.getsize(line, stroke_width=stroke_width)
+            # This requires pillow V10.0.0 or greater
+            left, top, right, bottom = font.getbbox(line, stroke_width=stroke_width)
+            #(text_width, text_height) = font.getsize(line, stroke_width=stroke_width)
+            text_width = right - left
+            text_height = bottom - top
             self._enlarge_canvas(text_width, text_height)
             # Draw the text
             self._draw.text(

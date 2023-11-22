@@ -26,7 +26,7 @@ def main():
         "comic", "/usr/share/fonts/truetype/msttcorefonts/Comic_Sans_MS.ttf", 14
     )
     message1.set_stroke(1, (0, 0, 0))
-    message1.add_image("/home/pi/logo.png")
+    message1.add_image("examples/logo.png")
     message1.add_text("Maker Melissa's Lab", color=(255, 255, 0), y_offset=-2)
     message1.set_shadow()
 
@@ -39,8 +39,8 @@ def main():
     message3 = duplicate(message2)
     message3.add_text("This is a copy test", color=(255, 0, 0))
 
-    circuit_image = "/home/pi/background.jpg"
-    sign = OpenSign(chain=6, gpio_mapping="adafruit-hat-pwm")
+    circuit_image = "examples/background.jpg"
+    sign = OpenSign(rows=64, columns=64, chain=2, gpio_mapping="regular")
 
     while True:
         sign.set_background_image(circuit_image)
