@@ -11,7 +11,8 @@ def main():
     message.add_text("Hello World!", color=(255, 255, 0))
     message.set_shadow()
 
-    sign = OpenSign(chain=6)
+    #sign = OpenSign(chain=6)
+    sign = OpenSign(rows=32, columns=128, rgb_sequence="rbg",  gpio_mapping="adafruit-hat-pwm")
     sign.set_background_image("background.jpg")
 
     while True:

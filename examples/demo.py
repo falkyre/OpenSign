@@ -31,7 +31,8 @@ def main():
     message4.add_text("Subscribe to my Channel", color=(255, 255, 255))
     message4.set_shadow()
 
-    sign = OpenSign(chain=6)
+    #sign = OpenSign(chain=6)
+    sign = OpenSign(rows=32, columns=128, rgb_sequence="rbg",  gpio_mapping="adafruit-hat-pwm")
     sign.set_background_image("background.jpg")
 
     while True:

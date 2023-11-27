@@ -202,10 +202,16 @@ class OpenSignCanvas:
         lines = text.split("\n")
         for index, line in enumerate(lines):
             # This requires pillow V10.0.0 or greater
-            left, top, right, bottom = font.getbbox(line, stroke_width=stroke_width)
+            # Noit happy with the +2 for the stroke_width but it's the only thing that seems to work woith pillow 10
+            left, top, right, bottom = font.getbbox(line, stroke_width=stroke_width+2)
             #(text_width, text_height) = font.getsize(line, stroke_width=stroke_width)
             text_width = right - left
-            text_height = bottom - top
+            text_height = bottom - top 
+            
+            # print("width={}".format(text_width))
+            # print("height={}".format(text_height))
+            # print("stroke_width={}".format(stroke_width))
+            
             self._enlarge_canvas(text_width, text_height)
             # Draw the text
             self._draw.text(
