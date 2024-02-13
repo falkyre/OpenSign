@@ -202,7 +202,7 @@ class OpenSignCanvas:
         lines = text.split("\n")
         for index, line in enumerate(lines):
             # This requires pillow V10.0.0 or greater
-            # Noit happy with the +2 for the stroke_width but it's the only thing that seems to work woith pillow 10
+            # Not happy with the +2 for the stroke_width but it's the only thing that seems to work with pillow 10
             left, top, right, bottom = font.getbbox(line, stroke_width=stroke_width+2)
             #(text_width, text_height) = font.getsize(line, stroke_width=stroke_width)
             text_width = right - left
@@ -238,6 +238,16 @@ class OpenSignCanvas:
         """
         x, y = self._cursor
         new_image = Image.open(file).convert("RGBA")
+        self._enlarge_canvas(new_image.width, new_image.height)
+        self._image.alpha_composite(new_image, dest=(x, y))
+        self._cursor[0] += new_image.width
+
+    def add_img(self, im):
+        """Add an image to the canvas.
+        :param Image im: A PIL Image object
+        """
+        x, y = self._cursor
+        new_image = im.convert("RGBA")
         self._enlarge_canvas(new_image.width, new_image.height)
         self._image.alpha_composite(new_image, dest=(x, y))
         self._cursor[0] += new_image.width
