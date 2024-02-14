@@ -247,6 +247,7 @@ class OpenSignCanvas:
         :param Image im: A PIL Image object
         """
         x, y = self._cursor
+        
         new_image = im.convert("RGBA")
         self._enlarge_canvas(new_image.width, new_image.height)
         self._image.alpha_composite(new_image, dest=(x, y))

@@ -42,7 +42,7 @@ Implementation Notes
 import time
 import os
 from PIL import Image, ImageChops
-from rgbmatrix import RGBMatrix, RGBMatrixOptions
+
 
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/makermelissa/OpenSign.git"
@@ -71,7 +71,13 @@ class OpenSign:
         row_addr_type=0,
         multiplexing=0,
         pixel_mapper="",
+        emulated=False,
     ):
+        if emulated:
+            from RGBMatrixEmulator import RGBMatrix, RGBMatrixOptions
+        else:
+            from rgbmatrix import RGBMatrix, RGBMatrixOptions
+            
         options = RGBMatrixOptions()
 
         options.hardware_mapping = gpio_mapping
